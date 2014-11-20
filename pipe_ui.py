@@ -1,6 +1,8 @@
 from PySide.QtCore import *
 from PySide.QtGui import *
 import sys
+import os
+import shutil
 import app
 
 
@@ -10,14 +12,18 @@ class PipeUI(QWidget):
         QWidget.__init__(self)
 
         self.qvBoxLayout = QVBoxLayout()
+        self.topQhBoxLayout = QHBoxLayout()
         self.qhBoxLayout = QHBoxLayout()
 
         # Configure file system abstract model
+        minimize_to_tray_button = QPushButton()
+        create_project_button = QPushButton()
+        create_project_button.setIcon(QIcon("./icon/new_project.png"))
         self.model = QFileSystemModel()
         self.model.setRootPath(QDir().currentPath())
         self.model.setFilter(QDir.AllDirs | QDir.NoDotAndDotDot)
 
-        # Configure aitocompletion for project text line
+        # Configure autocompletion for project text line
         completer = QCompleter(self)
         completer.setModel(self.model)
         completer.setCompletionMode(completer.InlineCompletion)
@@ -25,6 +31,12 @@ class PipeUI(QWidget):
         # Configure tree view widget
         self.treeView = QTreeView()
         self.treeView.setModel(self.model)
+
+        # Create a menu for QTree
+        qtree_meny = QMenu()
+        qtree_meny.addAction("Delete")
+        #### ????????#####
+
 
         # Other ui elements
         self.projectEditLineLabel = QLabel("Projects Folder:")
@@ -49,9 +61,8 @@ class PipeUI(QWidget):
 
         # Add widgets to layout
         self.qvBoxLayout.addWidget(self.projectEditLineLabel)
-        self.qvBoxLayout.addWidget(self.projectsDirLine)
-        self.qvBoxLayout.addWidget(self.contextLabel)
-        self.qvBoxLayout.addWidget(self.treeView)
+        self.topQhBoxLayout.addWidget(self.projectsDirLine)
+        self.topQhBoxLayout.addWidget(create_project_button)
 
         # Set layout of main window
         self.setStyleSheet("QWidget {color: rgb(240,240,240); background-color: rgb(24,24,24)}"
@@ -61,28 +72,64 @@ class PipeUI(QWidget):
                             "QTreeView {color: rgb(240,240,240); background-color: rgb(24,24,24)}")
 
         self.create_app_launch_buttons()
+        self.qvBoxLayout.addLayout(self.topQhBoxLayout)
+
+        self.qvBoxLayout.addWidget(self.contextLabel)
+        self.qvBoxLayout.addWidget(self.treeView)
+
         self.qvBoxLayout.addLayout(self.qhBoxLayout)
+
+
+
         self.setLayout(self.qvBoxLayout)
+        self.qvBoxLayout.addWidget(minimize_to_tray_button)
         self.setWindowTitle("Pipe")
         self.resize(300, 800)
         self.setFocus()
 
         # Events
         self.projectsDirLine.textChanged.connect(self.update_model_path)
+        minimize_to_tray_button.clicked.connect(self.minimize_to_tray)
+        create_project_button.clicked.connect(self.create_project)
 
-    def closeEvent(self, event):
-        event.ignore()
+    def create_project(self):
+        projects_directory = self.projectsDirLine.text()
+        cwd = os.getcwd().replace("\\", "/")
+        schema_project = cwd + "/config/schema"
+        project_name_dialog = QInputDialog.getText(self, "Project Name", "Enter new project name", QLineEdit.Normal)
+        name, state = project_name_dialog
+        if state:
+            new_project = shutil.copytree(schema_project, projects_directory + "/" + name)
+
+    def restore_app(self):
+        self.show()
+
+    def close_app(self):
+        self.close()
+
+    @Slot(QSystemTrayIcon.ActivationReason)
+    def tray_double_click(self, reason):
+        if reason == QSystemTrayIcon.DoubleClick:
+            if self.isHidden():
+                self.show()
+
+            else:
+                self.hide()
+
+    def create_tray_icon(self):
+        self.tray_icon_menu = QMenu(self)
+        self.tray_icon_menu.addAction('Restore', self.restore_app)
+        self.tray_icon_menu.addAction('Close', self.close_app)
+
+        self.tray_icon = QSystemTrayIcon(QIcon("./icon/hidrant.png"))
+        self.tray_icon.setContextMenu(self.tray_icon_menu)
+        self.tray_icon.show()
+        self.tray_icon.showMessage ('Running', 'Running in the background.')
+        self.tray_icon.activated.connect(self.tray_double_click)
+
+    def minimize_to_tray(self):
         self.hide()
-    # Override main window  minimizing event
-
-    # def changeEvent(self, e):
-    #     if e.type() == QEvent.WindowStateChange:
-    #         if self.isMinimized():
-    #             self.hide()
-
-    # def appLaunchMenu(self):
-    #
-    #     return meny
+        self.create_tray_icon()
 
     def create_app_launch_buttons(self):
         run_houdini_button = QPushButton()
