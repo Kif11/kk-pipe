@@ -89,4 +89,4 @@ class App(util.Util):
         subprocess.Popen(launch_cmd)
 
 
-# Edit test comment
+# Edit test comment edited from GIT
