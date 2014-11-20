@@ -87,6 +87,3 @@ class App(util.Util):
 
         launch_cmd = "%s %s" % (app_launch_path, app_cmd_args)
         subprocess.Popen(launch_cmd)
-
-
-# Edit test comment edited from GIT
