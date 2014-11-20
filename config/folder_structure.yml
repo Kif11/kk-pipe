@@ -1,0 +1,16 @@
+img:
+    ref: 0
+    texture: 0
+geo: 
+    abc: 0
+    sim: 0
+    obj: 0
+render:
+    still: 0
+    SQ: 0
+    mov: 0
+export: 0
+comp: 0
+source: 0
+script: 0
+old: 0

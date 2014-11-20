@@ -1,0 +1,30 @@
+maya_2015:
+    windows_launch_path: 'C:/Program Files/Autodesk/Maya2015/bin/maya.exe'
+    mac_launch_path: ''
+    windows_args: ''
+    mac_args: ''
+    user_pref_folder: 'user_prefs/maya'
+
+maya_2014:
+    windows_launch_path: 'C:/Program Files/Autodesk/Maya2014/bin/maya.exe'
+
+maya_2013:
+    windows_launch_path: 'C:/Program Files/Autodesk/Maya2013/bin/maya.exe'
+    mac_launch_path: ''
+    windows_args: ''
+    mac_args: ''
+    user_pref_folder: 'user_prefs/maya'
+
+houdini_13.0.498:
+    windows_launch_path: 'C:/Program Files/Side Effects Software/Houdini 13.0.498/bin/houdini.exe'
+    mac_launch_path: ''
+    windows_args: '-s kk_desktop -n'
+    mac_args: ''
+    user_pref_folder: 'user_prefs'
+
+houdini_13.0.260:
+    windows_launch_path: 'C:/Program Files/Side Effects Software/Houdini 13.0.260/bin/houdini.exe'
+    mac_launch_path: ''
+    windows_args: '-s kk_desktop -n'
+    mac_args: ''
+    user_pref_folder: 'user_prefs'
