@@ -5,8 +5,6 @@ import os
 import shutil
 import app
 
-# Git test comment 
-
 class PipeUI(QWidget):
 
     def __init__(self):
@@ -232,3 +230,5 @@ application = QApplication(sys.argv)
 dialog = PipeUI()
 dialog.show()
 application.exec_()
+
+# Edit test comment
