@@ -6,10 +6,18 @@ import shutil
 import app
 
 class PipeUI(QWidget):
+    '''
+    This class contains the UI elements and the functions
+    directly associated with the UI
+    '''
 
     def __init__(self):
+        '''
+        Initialize the UI elements, set their defaults and connect them.
+        '''
         QWidget.__init__(self)
 
+        # Initialize the layouts
         self.qvBoxLayout = QVBoxLayout()
         self.topQhBoxLayout = QHBoxLayout()
         self.qhBoxLayout = QHBoxLayout()
@@ -32,10 +40,9 @@ class PipeUI(QWidget):
         self.treeView.setModel(self.model)
 
         # Create a menu for QTree
-        qtree_meny = QMenu()
-        qtree_meny.addAction("Delete")
+        qtree_menu = QMenu()
+        qtree_menu.addAction("Delete")
         #### ????????#####
-
 
         # Other ui elements
         self.projectEditLineLabel = QLabel("Projects Folder:")
@@ -101,9 +108,15 @@ class PipeUI(QWidget):
             new_project = shutil.copytree(schema_project, projects_directory + "/" + name)
 
     def restore_app(self):
+        ''' Show the Application if Minimized '''
         self.show()
 
+    def testAction(self):
+        ''' Testing A new menu action'''
+        print 'Testing Actions'
+
     def close_app(self):
+        ''' Close the Application '''
         self.close()
 
     @Slot(QSystemTrayIcon.ActivationReason)
@@ -118,6 +131,9 @@ class PipeUI(QWidget):
     def create_tray_icon(self):
         self.tray_icon_menu = QMenu(self)
         self.tray_icon_menu.addAction('Restore', self.restore_app)
+        self.tray_icon_menu.addSeparator()
+        self.tray_icon_menu.addAction('TestAction', self.testAction)
+        self.tray_icon_menu.addSeparator()
         self.tray_icon_menu.addAction('Close', self.close_app)
 
         self.tray_icon = QSystemTrayIcon(QIcon("./icon/hidrant.png"))
@@ -129,6 +145,7 @@ class PipeUI(QWidget):
     def minimize_to_tray(self):
         self.hide()
         self.create_tray_icon()
+
 
     def create_app_launch_buttons(self):
         run_houdini_button = QPushButton()
