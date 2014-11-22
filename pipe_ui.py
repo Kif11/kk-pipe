@@ -133,6 +133,7 @@ class PipeUI(QWidget):
         self.tray_icon_menu.addAction('Restore', self.restore_app)
         self.tray_icon_menu.addSeparator()
         self.tray_icon_menu.addAction('TestAction', self.testAction)
+        self.tray_icon_menu.addAction('TestAction2', self.testAction)
         self.tray_icon_menu.addSeparator()
         self.tray_icon_menu.addAction('Close', self.close_app)
 
