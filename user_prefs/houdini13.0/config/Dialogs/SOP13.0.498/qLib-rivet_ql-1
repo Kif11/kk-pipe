@@ -1,0 +1,127 @@
+// Magic: f25fcf36
+// Automatically generated PSI dialog (PSI version 13.0.498)
+// Sun Dec 07 18:52:15 2014
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+rivetgroup.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    rivetgroup.label = PARM_LABEL("Point Group", "rivetgroup") WIDTH(1.5);
+    PARM_FIELD(string, "rivetgroup") VALUE(rivetgroup.val) 
+	LABELREF(rivetgroup.label) HSTRETCH;
+
+    rivetgroup.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+}
+
+rivetweights.gad = ROW
+{
+   HSTRETCH
+
+   rivetweights.label = PARM_LABEL("Point Weights", "rivetweights") WIDTH(1.5);
+
+   PARM(float, 3, "rivetweights", none, none, "#1,#2,#3") LABELREF(rivetweights.label)
+	HSTRETCH;
+
+}
+
+rivetuseattribs.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("rivetuseattribs", "Use Point Vector Attributes For Rivet Frame") toggle VALUE(rivetuseattribs.val);
+
+}
+
+rivetxattrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    rivetxattrib.label = PARM_LABEL("X-Axis Attribute", "rivetxattrib") WIDTH(1.5);
+    PARM_FIELD(string, "rivetxattrib") VALUE(rivetxattrib.val) 
+	LABELREF(rivetxattrib.label) HSTRETCH;
+
+}
+
+rivetzattrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    rivetzattrib.label = PARM_LABEL("Z-Axis Attribute", "rivetzattrib") WIDTH(1.5);
+    PARM_FIELD(string, "rivetzattrib") VALUE(rivetzattrib.val) 
+	LABELREF(rivetzattrib.label) HSTRETCH;
+
+}
+
+apply.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("apply", "Apply") toggle VALUE(apply.val);
+
+}
+
+invert.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("invert", "Invert") toggle VALUE(invert.val);
+
+}
+
+folder0.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG
+    { 
+	VALUE(folder0.gad.val) STRETCH(1,0)
+
+	TAB "Rivet (SOP)"
+	{
+	    LAYOUT(vertical) STRETCH
+
+	    MARGIN(0.05) SPACING(2p)
+	    rivetgroup.gad;		
+	    rivetweights.gad;		
+	    rivetuseattribs.gad;		
+	    rivetxattrib.gad;		
+	    rivetzattrib.gad;		
+
+	    { STRETCH(1,1) LOOK(plain) }
+	}
+    } 
+}
+
+# warning cpp warning: "Templates/GenV3/subdialog.top.ui":5 Macro "PARMSPACING" redefined.  Using later definition
+# warning cpp warning: "Templates/GenV3/subdialog.top.ui":6 Macro "LAYOUTDIR" redefined.  Using later definition
+# warning cpp warning: "Templates/GenV3/subdialog.top.ui":7 Macro "LOOK_PLAIN" redefined.  Using later definition
+# warning cpp warning: "Templates/GenV3/subdialog.top.ui":8 Macro "DO_JUSTIFY" redefined.  Using later definition
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH LOOK(plain) 
+    folder0.gad; 
+    apply.gad; 
+    invert.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

@@ -1,0 +1,35 @@
+// Magic: 60308565
+// Automatically generated PSI dialog (PSI version 13.0.498)
+// Sun Dec 07 18:19:56 2014
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+xformtype.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Handle", "xformtype") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    xformtype.menu;
+
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH LOOK(plain) 
+    xformtype.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

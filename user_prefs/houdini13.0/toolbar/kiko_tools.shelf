@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <toolshelf name="KK_TOOLS" label="KK_TOOLS">
+    <memberTool name="create_project"/>
+    <memberTool name="mantra_job"/>
+    <memberTool name="extract_groups"/>
+    <memberTool name="extract_nodes"/>
+    <memberTool name="OTL_version"/>
+    <memberTool name="kk_save"/>
+  </toolshelf>
+
+  <tool name="create_project" label="Create Project" icon="$HOME/houdini13.0/config/Icons/projectFolder.png">
+    <script scriptType="python"><![CDATA[# Create project structure inside your JOB folder
+
+import os
+
+curProject = os.environ['JOB']
+
+mainDirList = ["geo", "img", "ref", "export", "comp", "asset", "render", "old", "source", "script"]
+
+for dir in mainDirList:
+    if not(os.path.isdir(dir)):
+        os.mkdir(curProject + "/" + dir)
+        print "%s has been created." % dir
+    else:
+        print '"%s" folder is already exist.' % dir
+        
+        ]]></script>
+  </tool>
+
+  <tool name="extract_groups" label="Extract Groups" icon="$HOME/houdini13.0/config/Icons/SeparateIcon.png">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <script scriptType="python"><![CDATA[# Extract primitive groups into separate objects
+
+import hou
+
+selected = hou.selectedNodes()
+obj = hou.node("/obj")
+shop = hou.node("/shop")
+
+for node in selected:
+
+    geo = node.geometry()
+    primGroupsInGeo = geo.primGroups()
+    cwd = node.node("..").path()
+
+    # Create empty geometry container
+    
+    def createDummy(name):
+        obj = hou.node("/obj")
+        newGeo = obj.createNode("geo", name)
+        newGeo.children()[0].destroy()
+        return newGeo
+
+    # Create delete node for each primitive group
+    
+    count = 0
+    
+    for group in range(0,len(primGroupsInGeo)):
+        group = primGroupsInGeo[group].name()
+        deleteGroup = hou.node(cwd).createNode("delete")
+        deleteGroupNode = hou.node(deleteGroup.path())
+        deleteGroupNode.setParms({"group":group, "negate":1})
+        deleteGroupNode.setFirstInput(node)
+        deleteGroupNode.setPosition(node.position())
+        deleteGroupNode.move([count,-2])
+        deleteGroupNode.setSelected(True)
+        node.setSelected(False)
+
+    # Create nulls
+
+        null = hou.node(cwd).createNode("null", group)
+        nullNode = hou.node(null.path())
+        nullNode.setFirstInput(deleteGroupNode)
+        nullNode.setPosition(deleteGroupNode.position())
+        nullNode.move([0, -2])
+        nullNode.setSelected(True)
+
+        nodeColor = hou.Color([1,0.8,0])
+        nullNode.setColor(nodeColor)
+
+    # Create geo node for each group    
+
+        geo = createDummy(group)
+        geo.setPosition(hou.node(cwd).position())
+        geo.move([0, -1 - count/2])
+        geoPath = geo.path()
+        objMerge = hou.node(geoPath).createNode("object_merge")
+        
+        objMerge.setParms({"objpath1":null.path(), "xformtype":1})
+
+        hou.node(cwd).setDisplayFlag(False)
+
+        count += 2]]></script>
+  </tool>
+
+  <tool name="extract_nodes" label="Extract Nodes" icon="$HOME/houdini13.0/config/Icons/archive-extract-2.png">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <script scriptType="python"><![CDATA[# Extract selected nodes into separate geo containers 
+
+import hou
+
+selected = hou.selectedNodes()
+
+count = 0
+
+for node in selected:
+
+    cwd = node.node("..").path()    
+
+    def createDummy(name):
+        global newGeo
+        obj = hou.node("/obj")
+        newGeo = obj.createNode("geo", name)
+        newGeo.setPosition(hou.node(cwd).position())
+        newGeo.move([0,(1+count)*-1])
+
+        newGeo.children()[0].destroy()
+
+
+    # Merge selected object in new geo container
+    createDummy(node.name())
+    objMerge = hou.node(newGeo.path()).createNode("object_merge")
+    hou.node(objMerge.path()).setParms({"objpath1":node.path(),"xformtype":1})
+    
+    count += 1]]></script>
+  </tool>
+
+  <tool name="out_null" label="Out Null" icon="$HOME/houdini13.0/config/Icons/out_null.png">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <script scriptType="python"><![CDATA[# Create "OUT NULL" under selected nodes
+
+selected = hou.selectedNodes()
+defaultName = False
+
+if selected:
+    for node in selected:
+        parent = node.node("..")
+        if defaultName:
+            defaultName
+        else:
+            name = hou.ui.readInput("Name for %s" % node.name())[1].upper()
+        if len(name) > 0:
+            name
+        else:
+            name = "OUT"
+            defaultName = True
+        outNull = parent.createNode("null", name)
+        outNull.setNextInput(node)
+        outNull.setPosition(node.position())
+        outNull.move([0,-2])
+        outNull.setSelected(True)
+        node.setSelected(False)
+    
+        nodeColor = hou.Color([1,0.8,0])
+        outNull.setColor(nodeColor)
+    
+    outNull.setDisplayFlag(True)
+    outNull.setRenderFlag(True)
+else:
+    hou.ui.displayMessage("Please select a node")]]></script>
+  </tool>
+
+  <tool name="mantra_job" label="Mantra Job" icon="$HOME/houdini13.0/config/Icons/create_mantra.png">
+    <toolMenuContext name="network">
+      <contextNetType>ROP</contextNetType>
+    </toolMenuContext>
+    <script scriptType="python"><![CDATA[# Create matra node with defined output path
+
+import hou, os
+
+out = hou.node("/out")
+
+jobName = hou.ui.readInput("Job name")[1]
+
+imgFormat = ".exr"
+jobPath = os.environ['JOB'] + "/render/" + jobName
+imgPath = "$JOB" + "/render/" + jobName + "/" + jobName + "_$F4" + imgFormat
+
+if not(os.path.isdir(jobPath)):
+    os.mkdir(jobPath)
+    print "%s has been created." % jobPath
+
+mantraNode = out.createNode("ifd", jobName)
+mantraNode.setParms({"vm_picture":imgPath})]]></script>
+  </tool>
+
+  <tool name="copyProject" label="Copy Project" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import kkTools as kk]]></script>
+  </tool>
+
+  <tool name="hide" label="Hide" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import hou
+
+# Toggle visibility of selected nodes. 
+# If nothing is selected will unhide the last hidden nodes.
+
+selection = hou.selectedNodes()
+
+if selection:
+    lastSelection = selection
+if not selection:
+    for node in lastSelection:
+        node.setDisplayFlag(True)
+
+for node in selection:
+    if node.isDisplayFlagSet():
+        node.setDisplayFlag(False)
+    else:
+        node.setDisplayFlag(True)]]></script>
+  </tool>
+
+  <tool name="qube_submit" label="Qube Submit" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import qube_submit_hscript_render as q
+reload(q)
+q.qube_submit()]]></script>
+  </tool>
+
+  <tool name="kk_save" label="Save" icon="$HOME/houdini13.0/config/Icons/Save_disk_download_floppy_arrow_diskette.png">
+    <script scriptType="python"><![CDATA[import kkTools as kk
+reload(kk)
+
+kk.saveFile()]]></script>
+  </tool>
+
+  <tool name="OTL_version" label="OTL Version" icon="$HOME/houdini13.0/config/Icons/Add_plus_new_user_green_page_file_up_text.png">
+    <script scriptType="python"><![CDATA[# HDA VERSION CREATER 1.0
+
+# Create version of selected digital asset
+
+
+import hou, sys, os, tempfile
+selected = hou.selectedNodes()
+
+assetPath = os.environ['JOB'] + "/asset"
+
+for node in selected:
+    
+    # Check for proper name
+    if len(node.name().split("_")) != 3:
+        print 'Rename "%s" by following naming convention "user_asset_version"'  % node.name()
+    
+    # Create new HDA from selection if one not exist
+    elif node.type().definition() == None:
+        nodeName = node.name()
+        nameSplit = nodeName.split("_")
+        otlPrefix = nameSplit[0]
+        otlName = nameSplit[1]
+        otlVersion = nameSplit[2]
+        otlPath = assetPath + "/" + nodeName + ".otl"
+
+        newHDA = node.createDigitalAsset(otlPrefix + "_" + otlName, otlPath, otlPrefix + "_" + otlName)
+        newHDA.matchCurrentDefinition()
+
+        print 'The otl "%s" from "%s" has been created.' % (otlPath, nodeName)
+
+    # If node is alredy an asset create a new version
+    elif node.type().definition():
+        hdaDef = node.type().definition()
+        fileName = os.path.basename(hdaDef.libraryFilePath())
+        nodeName = os.path.splitext(fileName)[0]
+        nameSplit = nodeName.split("_")
+        otlPrefix = nameSplit[0]
+        otlName = nameSplit[1]
+        otlVersion = nameSplit[2]
+        otlPath = assetPath + "/" + nodeName + ".otl"
+        otlNewVersion = "%02d" % (int(otlVersion) + 1)
+        otlNewPath = assetPath + "/" + otlPrefix + "_" + otlName + "_" + otlNewVersion + ".otl"
+
+        # Check if newer version is exist
+        if os.path.isfile(otlNewPath):
+            newVersionMsg = not(hou.ui.displayMessage('"%s" is already exist. Override?' % otlNewPath, buttons=("Yes","No")))
+            if newVersionMsg == False:
+                break
+ 
+        # If asset unlocke save it in new version trough temp file
+        isLocked = False
+        if not(node.isLocked()):
+            tempPath = tempfile.mkstemp()[1].replace("\\","/")
+            tempHDAPath = tempPath + fileName
+            # Save temp HDA
+            hdaDef.save(tempHDAPath, node)
+            # Import again and set definition
+            hou.hda.installFile(tempHDAPath, None, False, True)
+            # Define temp definition insted of current
+            hdaDef = node.type().definition()
+            hdaDef.setIsPreferred(False)
+            print "Asset was unlocked hence it was saved as temp file %s" % tempHDAPath
+            isLocked = True
+        
+        # Copy definition to new file
+        hdaDef.copyToHDAFile(otlNewPath)
+        hou.hda.installFile(otlNewPath, None, False, True)
+        hdaDef = node.type().definition()
+        hdaDef.setIsPreferred(True)
+        
+        # Save curent definition and lock asset
+        hdaDef.updateFromNode(node)
+        node.matchCurrentDefinition()
+
+        # Uninstal temp HDA and remove file
+        if isLocked:
+            hou.hda.uninstallFile(tempHDAPath)
+            os.remove(tempHDAPath)
+
+        print 'Version "%s" of asset "%s" has been created' %(otlNewVersion, otlPath)
+            ]]></script>
+  </tool>
+</shelfDocument>

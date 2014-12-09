@@ -1,0 +1,227 @@
+// Magic: a353d530
+// Automatically generated PSI dialog (PSI version 13.0.498)
+// Sun Dec 07 18:26:19 2014
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+do_delete.row.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+do_delete.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+do_delete.gad = PARM_BUTTON("do_delete", "") toggle VALUE(do_delete.val);
+
+delete_type.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Delete Outside", "delete_type") WIDTH(1.27);
+    { WIDTH(0.09) }
+
+    delete_type.menu;
+
+}
+}	
+}	// Template join.bot
+
+
+del_offset.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ del_offset.label = PARM_LABEL("Offset", "del_offset") WIDTH(1.5);
+ PARM(float, 1, "del_offset", none, none) RANGE(0,10)
+	 LABELREF(del_offset.label) HSTRETCH;
+
+}
+
+delete_inside.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("delete_inside", "Delete Inside") toggle VALUE(delete_inside.val);
+
+}
+
+sep_1.sval := 1;
+
+sep_1.gad = 
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+
+    SWITCHER tight
+    {
+	VALUE(sep_1.sval) HSTRETCH
+
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	}
+
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_1.val[0]) JUSTIFY(center,center) HSTRETCH;
+	}
+
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_1.val[0]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[1]) JUSTIFY(center,center) HSTRETCH;
+	}
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_1.val[0]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[1]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[2]) JUSTIFY(center,center) HSTRETCH;
+	}
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_1.val[0]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[1]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[2]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[3]) JUSTIFY(center,center) HSTRETCH;
+	}
+    }
+}
+
+minpad.gad = ROW
+{
+   HSTRETCH
+
+   minpad.label = PARM_LABEL("Lower Padding", "minpad") WIDTH(1.5);
+
+   PARM(float, 3, "minpad", none, none, "X,Y,Z") LABELREF(minpad.label)
+	HSTRETCH;
+
+}
+
+maxpad.gad = ROW
+{
+   HSTRETCH
+
+   maxpad.label = PARM_LABEL("Upper Padding", "maxpad") WIDTH(1.5);
+
+   PARM(float, 3, "maxpad", none, none, "X,Y,Z") LABELREF(maxpad.label)
+	HSTRETCH;
+
+}
+
+do_clip.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Clip using", "do_clip") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    do_clip.menu;
+
+}
+
+do_xmin.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("do_xmin", "X-") toggle VALUE(do_xmin.val);
+
+}
+
+do_ymin.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("do_ymin", "Y-") toggle VALUE(do_ymin.val);
+
+}
+
+do_zmin.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("do_zmin", "Z-  ") toggle VALUE(do_zmin.val);
+
+}
+
+do_xmax.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("do_xmax", "X+") toggle VALUE(do_xmax.val);
+
+}
+
+do_ymax.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("do_ymax", "Y+") toggle VALUE(do_ymax.val);
+
+}
+
+do_zmax.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("do_zmax", "Z+") toggle VALUE(do_zmax.val);
+
+}
+
+flippolydir.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("flippolydir", "Flip Polygon(s)") toggle VALUE(flippolydir.val);
+
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH LOOK(plain) 
+    do_delete.row.join; 
+    del_offset.gad; 
+    delete_inside.gad; 
+    sep_1.gad; 
+    minpad.gad; 
+    maxpad.gad; 
+    do_clip.gad; 
+    do_xmin.gad; 
+    do_ymin.gad; 
+    do_zmin.gad; 
+    do_xmax.gad; 
+    do_ymax.gad; 
+    do_zmax.gad; 
+    flippolydir.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

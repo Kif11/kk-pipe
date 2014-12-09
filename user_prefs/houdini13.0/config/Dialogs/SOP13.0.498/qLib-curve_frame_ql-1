@@ -1,0 +1,282 @@
+// Magic: 1dbe5e9c
+// Automatically generated PSI dialog (PSI version 13.0.498)
+// Sun Dec 07 18:53:15 2014
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+group.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    group.label = PARM_LABEL("Group", "group") WIDTH(1.5);
+    PARM_FIELD(string, "group") VALUE(group.val) 
+	LABELREF(group.label) HSTRETCH;
+
+    group.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+}
+
+mode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Mode", "mode") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    mode.menu;
+
+}
+
+uv_attrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    uv_attrib.label = PARM_LABEL("UV Attribute", "uv_attrib") WIDTH(1.5);
+    PARM_FIELD(string, "uv_attrib") VALUE(uv_attrib.val) 
+	LABELREF(uv_attrib.label) HSTRETCH;
+
+    uv_attrib.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+}
+
+u_offs.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ u_offs.label = PARM_LABEL("U Offset", "u_offs") WIDTH(1.5);
+ PARM(float, 1, "u_offs", none, none) RANGE(0.0001,0.10000000000000001)
+	 LABELREF(u_offs.label) HSTRETCH;
+
+}
+
+up_mode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Up Vector Mode", "up_mode") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    up_mode.menu;
+
+}
+
+up_vector.gad = ROW
+{
+   HSTRETCH
+
+   up_vector.label = PARM_LABEL("Up Vector", "up_vector") WIDTH(1.5);
+
+   PARM(float, 3, "up_vector", none, none, "X,Y,Z") LABELREF(up_vector.label)
+	HSTRETCH;
+
+}
+do_tan.row.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+do_tan.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+do_tan.gad = PARM_BUTTON("do_tan", "") toggle VALUE(do_tan.val);
+
+tan_attrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    tan_attrib.label = PARM_LABEL("Output Tangent", "tan_attrib") WIDTH(1.27);
+    PARM_FIELD(string, "tan_attrib") VALUE(tan_attrib.val) 
+	LABELREF(tan_attrib.label) HSTRETCH;
+
+    tan_attrib.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+}
+}	
+}	// Template join.bot
+
+do_N.row.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+do_N.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+do_N.gad = PARM_BUTTON("do_N", "") toggle VALUE(do_N.val);
+
+N_attrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    N_attrib.label = PARM_LABEL("Normal", "N_attrib") WIDTH(1.27);
+    PARM_FIELD(string, "N_attrib") VALUE(N_attrib.val) 
+	LABELREF(N_attrib.label) HSTRETCH;
+
+    N_attrib.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+}
+}	
+}	// Template join.bot
+
+do_up.row.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+do_up.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+do_up.gad = PARM_BUTTON("do_up", "") toggle VALUE(do_up.val);
+
+up_attrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    up_attrib.label = PARM_LABEL("Up Vector", "up_attrib") WIDTH(1.27);
+    PARM_FIELD(string, "up_attrib") VALUE(up_attrib.val) 
+	LABELREF(up_attrib.label) HSTRETCH;
+
+    up_attrib.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+}
+}	
+}	// Template join.bot
+
+do_segmlength.row.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+do_segmlength.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+do_segmlength.gad = PARM_BUTTON("do_segmlength", "") toggle VALUE(do_segmlength.val);
+
+segmlength_attrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    segmlength_attrib.label = PARM_LABEL("Segment Length", "segmlength_attrib") WIDTH(1.27);
+    PARM_FIELD(string, "segmlength_attrib") VALUE(segmlength_attrib.val) 
+	LABELREF(segmlength_attrib.label) HSTRETCH;
+
+    segmlength_attrib.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+}
+}	
+}	// Template join.bot
+
+do_length.row.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+do_length.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+do_length.gad = PARM_BUTTON("do_length", "") toggle VALUE(do_length.val);
+
+length_attrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    length_attrib.label = PARM_LABEL("Curve Length", "length_attrib") WIDTH(1.27);
+    PARM_FIELD(string, "length_attrib") VALUE(length_attrib.val) 
+	LABELREF(length_attrib.label) HSTRETCH;
+
+    length_attrib.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+}
+}	
+}	// Template join.bot
+
+
+guide.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("guide", "Show Guide") toggle VALUE(guide.val);
+
+}
+
+guide_scale.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ guide_scale.label = PARM_LABEL("Scale", "guide_scale") WIDTH(1.5);
+ PARM(float, 1, "guide_scale", none, none) RANGE(0,1)
+	LOCK_RANGE_MIN LABELREF(guide_scale.label) HSTRETCH;
+
+}
+
+guide_offset.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ guide_offset.label = PARM_LABEL("Offset", "guide_offset") WIDTH(1.5);
+ PARM(float, 1, "guide_offset", none, none) RANGE(-0.25,0.25)
+	LOCK_RANGE_MIN LABELREF(guide_offset.label) HSTRETCH;
+
+}
+
+folder0.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG
+    { 
+	VALUE(folder0.gad.val) STRETCH(1,0)
+
+	TAB "Reference Frame"
+	{
+	    LAYOUT(vertical) STRETCH
+
+	    MARGIN(0.05) SPACING(2p)
+	    do_tan.row.join;		
+	    do_N.row.join;		
+	    do_up.row.join;		
+
+	    { STRETCH(1,1) LOOK(plain) }
+	}
+
+	TAB "Other Attributes"
+	{
+	    LAYOUT(vertical) STRETCH
+
+	    MARGIN(0.05) SPACING(2p)
+	    do_segmlength.row.join;		
+	    do_length.row.join;		
+
+	    { STRETCH(1,1) LOOK(plain) }
+	}
+    } 
+}
+
+# warning cpp warning: "Templates/GenV3/subdialog.top.ui":5 Macro "PARMSPACING" redefined.  Using later definition
+# warning cpp warning: "Templates/GenV3/subdialog.top.ui":6 Macro "LAYOUTDIR" redefined.  Using later definition
+# warning cpp warning: "Templates/GenV3/subdialog.top.ui":7 Macro "LOOK_PLAIN" redefined.  Using later definition
+# warning cpp warning: "Templates/GenV3/subdialog.top.ui":8 Macro "DO_JUSTIFY" redefined.  Using later definition
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH LOOK(plain) 
+    group.gad; 
+    mode.gad; 
+    uv_attrib.gad; 
+    u_offs.gad; 
+    up_mode.gad; 
+    up_vector.gad; 
+    folder0.gad; 
+    guide.gad; 
+    guide_scale.gad; 
+    guide_offset.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

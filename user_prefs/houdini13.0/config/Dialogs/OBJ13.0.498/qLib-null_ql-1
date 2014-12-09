@@ -1,0 +1,680 @@
+// Magic: 4524223b
+// Automatically generated PSI dialog (PSI version 13.0.498)
+// Sun Dec 07 18:16:08 2014
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+keeppos.row.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+keeppos.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+keeppos.gad = ROW
+{
+
+    PARM_BUTTON("keeppos", "Keep position when parenting") toggle VALUE(keeppos.val);
+
+}
+
+pre_xform.gad = ROW
+{
+
+    {  }
+    { WIDTH(0.1) }
+
+    pre_xform.menu;
+}
+}	
+}	// Template join.bot
+
+xOrd.row.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+xOrd.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+xOrd.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Transform Order", "xOrd") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    xOrd.menu;
+
+}
+
+rOrd.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center)
+
+    rOrd.menu;
+
+}
+}	
+}	// Template join.bot
+
+
+t.gad = ROW
+{
+   HSTRETCH
+
+   t.label = PARM_LABEL("Translate", "t") WIDTH(1.5);
+
+   PARM(float, 3, "t", none, none, "X,Y,Z") LABELREF(t.label)
+	HSTRETCH;
+
+}
+
+r.gad = ROW
+{
+   HSTRETCH
+
+   r.label = PARM_LABEL("Rotate", "r") WIDTH(1.5);
+
+   PARM(float, 3, "r", none, none, "X,Y,Z") LABELREF(r.label)
+	HSTRETCH;
+
+}
+
+s.gad = ROW
+{
+   HSTRETCH
+
+   s.label = PARM_LABEL("Scale", "s") WIDTH(1.5);
+
+   PARM(float, 3, "s", none, none, "X,Y,Z") LABELREF(s.label)
+	HSTRETCH;
+
+}
+
+p.gad = ROW
+{
+   HSTRETCH
+
+   p.label = PARM_LABEL("Pivot", "p") WIDTH(1.5);
+
+   PARM(float, 3, "p", none, none, "X,Y,Z") LABELREF(p.label)
+	HSTRETCH;
+
+}
+
+scale.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ scale.label = PARM_LABEL("Uniform Scale", "scale") WIDTH(1.5);
+ PARM(float, 1, "scale", none, none) RANGE(0,1)
+	 LABELREF(scale.label) HSTRETCH;
+
+}
+
+sep_1.sval := 1;
+
+sep_1.gad = 
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+
+    SWITCHER tight
+    {
+	VALUE(sep_1.sval) HSTRETCH
+
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	}
+
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_1.val[0]) JUSTIFY(center,center) HSTRETCH;
+	}
+
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_1.val[0]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[1]) JUSTIFY(center,center) HSTRETCH;
+	}
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_1.val[0]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[1]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[2]) JUSTIFY(center,center) HSTRETCH;
+	}
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_1.val[0]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[1]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[2]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[3]) JUSTIFY(center,center) HSTRETCH;
+	}
+    }
+}
+
+lookatpath.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left,center)
+
+ lookatpath.label = PARM_LABEL("Look At", "lookatpath") WIDTH(1.5);
+ PARM_FIELD(pathstring, "lookatpath") VALUE(lookatpath.val) 
+	LABELREF(lookatpath.label) HSTRETCH;
+
+ ACTION_ICONBUTTON "BUTTONS_jump" VALUE(lookatpath.jump)
+    HELP("Jump to operator\nCtrl+LMB: Open parameters popup dialog")
+    UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_node" VALUE(lookatpath.plus)
+    HELP("Open floating operator chooser") UI_FLAT_ICON_BTN_SIZE_SMALL 
+    LOOKFLAT;
+}
+
+lookup.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Look At Up Vector", "lookup") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    lookup.menu;
+
+}
+
+pathobjpath.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left,center)
+
+ pathobjpath.label = PARM_LABEL("Path Object", "pathobjpath") WIDTH(1.5);
+ PARM_FIELD(pathstring, "pathobjpath") VALUE(pathobjpath.val) 
+	LABELREF(pathobjpath.label) HSTRETCH;
+
+ ACTION_ICONBUTTON "BUTTONS_jump" VALUE(pathobjpath.jump)
+    HELP("Jump to operator\nCtrl+LMB: Open parameters popup dialog")
+    UI_FLAT_ICON_BTN_SIZE_SMALL LOOKFLAT;
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_node" VALUE(pathobjpath.plus)
+    HELP("Open floating operator chooser") UI_FLAT_ICON_BTN_SIZE_SMALL 
+    LOOKFLAT;
+}
+roll.row.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+roll.gad = ROW
+{
+   HSTRETCH
+
+   roll.label = PARM_LABEL( "Roll", "roll" ) WIDTH(1.5);
+
+   PARM(float, 1, "roll", none, none) RANGE(-360, 360)
+	LABELREF( roll.label ) HSTRETCH;
+
+}
+
+pos.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ pos.label = PARM_LABEL("Position", "pos") ;
+ PARM(float, 1, "pos", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(pos.label) HSTRETCH;
+
+}
+}	// Template join.bot
+
+
+uparmtype.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Parameterization", "uparmtype") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    uparmtype.menu;
+
+}
+
+pathorient.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ pathorient.label = PARM_LABEL("Orient Along Path", "pathorient") WIDTH(1.5);
+ PARM(integer, 1, "pathorient", none, none) RANGE(0,1)
+	 LABELREF(pathorient.label) HSTRETCH;
+
+}
+
+up.gad = ROW 
+{
+    HSTRETCH
+
+    up.label = PARM_LABEL("Orient Up Vector", "up") WIDTH(1.5);
+
+    PARM(float, 3, "up", none, none) LABELREF(up.label)
+	HSTRETCH;
+
+}
+
+bank.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ bank.label = PARM_LABEL("Auto-Bank factor", "bank") WIDTH(1.5);
+ PARM(float, 1, "bank", none, none) RANGE(-1,1)
+	 LABELREF(bank.label) HSTRETCH;
+
+}
+reset_xforms.row.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+reset_xforms.gad = ROW
+{
+
+    PARM_BUTTON("reset_xforms", "Reset: All") push VALUE(reset_xforms.val);
+}
+
+reset_trans.gad = ROW
+{
+
+    PARM_BUTTON("reset_trans", "Trans") push VALUE(reset_trans.val);
+}
+
+reset_rot.gad = ROW
+{
+
+    PARM_BUTTON("reset_rot", "Rot") push VALUE(reset_rot.val);
+}
+
+reset_scl.gad = ROW
+{
+
+    PARM_BUTTON("reset_scl", "Scl") push VALUE(reset_scl.val);
+}
+
+reset_pivot.gad = ROW
+{
+
+    PARM_BUTTON("reset_pivot", "Pivot") push VALUE(reset_pivot.val);
+}
+
+tmp.sval := 1;
+
+tmp.gad = 
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+
+    SWITCHER tight
+    {
+	VALUE(tmp.sval) HSTRETCH
+
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	}
+
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(tmp.val[0]) JUSTIFY(center,center) HSTRETCH;
+	}
+
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(tmp.val[0]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(tmp.val[1]) JUSTIFY(center,center) HSTRETCH;
+	}
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(tmp.val[0]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(tmp.val[1]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(tmp.val[2]) JUSTIFY(center,center) HSTRETCH;
+	}
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(tmp.val[0]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(tmp.val[1]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(tmp.val[2]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(tmp.val[3]) JUSTIFY(center,center) HSTRETCH;
+	}
+    }
+}
+}	// Template join.bot
+
+tdisplay.row.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+tdisplay.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+tdisplay.gad = PARM_BUTTON("tdisplay", "") toggle VALUE(tdisplay.val);
+
+display.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ display.label = PARM_LABEL("Display", "display") WIDTH(1.27);
+ PARM(integer, 1, "display", none, none) RANGE(0,1)
+	LOCK_RANGE LABELREF(display.label) HSTRETCH;
+
+}
+}	
+}	// Template join.bot
+
+display_pivot.row.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+display_pivot.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+display_pivot.gad = PARM_BUTTON("display_pivot", "") toggle VALUE(display_pivot.val);
+
+pivot_controltype.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Pivot Type", "pivot_controltype") WIDTH(1.27);
+    { WIDTH(0.09) }
+
+    pivot_controltype.menu;
+
+}
+}	
+}	// Template join.bot
+
+
+pivot_geoscale.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ pivot_geoscale.label = PARM_LABEL("Pivot Scale", "pivot_geoscale") WIDTH(1.5);
+ PARM(float, 1, "pivot_geoscale", none, none) RANGE(0,10)
+	 LABELREF(pivot_geoscale.label) HSTRETCH;
+
+}
+
+use_dcolor2.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("use_dcolor2", "Set Wireframe Color") toggle VALUE(use_dcolor2.val);
+
+}
+
+dcolor2.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+
+    dcolor2.label = PARM_LABEL("Wireframe Color", "dcolor2") WIDTH(1.5);
+
+    PARM(float, 3, "dcolor2", none, COLOR, "R,G,B") 
+	LABELREF(dcolor2.label) HSTRETCH;
+
+}
+
+geoscale.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ geoscale.label = PARM_LABEL("Geometry Scale", "geoscale") WIDTH(1.5);
+ PARM(float, 1, "geoscale", none, none) RANGE(0,10)
+	 LABELREF(geoscale.label) HSTRETCH;
+
+}
+
+displayicon.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Display", "displayicon") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    displayicon.menu;
+
+}
+
+controltype.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Control Type", "controltype") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    controltype.menu;
+
+}
+
+orientation.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Orientation", "orientation") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    orientation.menu;
+
+}
+
+shadedmode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Shaded Mode", "shadedmode") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    shadedmode.menu;
+
+}
+
+picking.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("picking", "Viewport Selecting Enabled") toggle VALUE(picking.val);
+
+}
+
+pickscript.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+ pickscript.label = PARM_LABEL("Select Script", "pickscript") WIDTH(1.5);
+
+ PARM_FIELD (pathstring, "pickscript") LABELREF(pickscript.label)
+	VALUE(pickscript.val) HSTRETCH;
+
+ pickscript.menu LOOK(menuiconbutton) SIZE(0.26, 0.26);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_file" VALUE(pickscript.plus) LOOKFLAT
+    HELP("Open floating file chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+}
+
+caching.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("caching", "Cache Object Transform") toggle VALUE(caching.val);
+
+}
+label1.gad = NULL { }
+label2.gad = NULL { }
+label3.gad = NULL { }
+label4.gad = NULL { }
+
+outputobj.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Output Transform", "outputobj") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    outputobj.menu;
+
+}
+
+visibleobjects.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ visibleobjects.label = PARM_LABEL("Visible Children", "visibleobjects") WIDTH(1.5);
+ PARM_FIELD (pathstring, "visibleobjects") LABELREF(visibleobjects.label) 
+	VALUE(visibleobjects.val) HSTRETCH;
+
+ visibleobjects.menu LOOK(menuiconbutton) SIZE(0.26, 0.26);
+
+ ACTION_ICONBUTTON "BUTTONS_chooser_node" VALUE(visibleobjects.plus) LOOKFLAT
+    HELP("Open floating bundle chooser") UI_FLAT_ICON_BTN_SIZE_SMALL;
+
+}
+
+use_dcolor.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("use_dcolor", "Set Wireframe Color") toggle VALUE(use_dcolor.val);
+
+}
+
+dcolor.gad = 
+{
+    LAYOUT (horizontal) HSTRETCH
+
+    dcolor.label = PARM_LABEL("Wireframe Color", "dcolor") WIDTH(1.5);
+
+    PARM(float, 3, "dcolor", none, COLOR, "R,G,B") 
+	LABELREF(dcolor.label) HSTRETCH;
+
+}
+
+folder4.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG
+    { 
+	VALUE(folder4.gad.val) STRETCH(1,0)
+
+	TAB "Transformations"
+	{
+	    LAYOUT(vertical) STRETCH
+
+	    MARGIN(2p) SPACING(2p)
+	    xOrd.row.join;		
+	    t.gad;		
+	    r.gad;		
+	    s.gad;		
+	    p.gad;		
+	    scale.gad;		
+	    sep_1.gad;		
+
+	    { STRETCH(1,1) LOOK(plain) }
+	}
+
+	TAB "Constraints"
+	{
+	    LAYOUT(vertical) STRETCH
+
+	    MARGIN(2p) SPACING(2p)
+	    lookatpath.gad;		
+	    lookup.gad;		
+	    pathobjpath.gad;		
+	    roll.row.join;		
+	    uparmtype.gad;		
+	    pathorient.gad;		
+	    up.gad;		
+	    bank.gad;		
+
+	    { STRETCH(1,1) LOOK(plain) }
+	}
+    } 
+}
+
+stdswitcher3.gad = 
+{
+    LAYOUT(vertical) HSTRETCH
+
+    TABDIALOG
+    { 
+	VALUE(stdswitcher3.gad.val) STRETCH(1,0)
+
+	TAB "Transform"
+	{
+	    LAYOUT(vertical) STRETCH
+
+	    MARGIN(0.05) SPACING(2p)
+	    keeppos.row.join;		
+	    folder4.gad;		
+	    reset_xforms.row.join;		
+
+	    { STRETCH(1,1) LOOK(plain) }
+	}
+
+	TAB "Render"
+	{
+	    LAYOUT(vertical) STRETCH
+
+	    MARGIN(0.05) SPACING(2p)
+	    tdisplay.row.join;		
+
+	    { STRETCH(1,1) LOOK(plain) }
+	}
+
+	TAB "Misc"
+	{
+	    LAYOUT(vertical) STRETCH
+
+	    MARGIN(0.05) SPACING(2p)
+	    display_pivot.row.join;		
+	    pivot_geoscale.gad;		
+	    use_dcolor2.gad;		
+	    dcolor2.gad;		
+	    geoscale.gad;		
+	    displayicon.gad;		
+	    controltype.gad;		
+	    orientation.gad;		
+	    shadedmode.gad;		
+	    picking.gad;		
+	    pickscript.gad;		
+	    caching.gad;		
+
+	    { STRETCH(1,1) LOOK(plain) }
+	}
+    } 
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH LOOK(plain) 
+    stdswitcher3.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

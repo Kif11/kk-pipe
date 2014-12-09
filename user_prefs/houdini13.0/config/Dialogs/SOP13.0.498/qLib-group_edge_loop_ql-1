@@ -1,0 +1,289 @@
+// Magic: f29daac0
+// Automatically generated PSI dialog (PSI version 13.0.498)
+// Sun Dec 07 18:43:56 2014
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+editable.gad = NULL { }
+
+startgroup.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    startgroup.label = PARM_LABEL("Starting Group(s)", "startgroup") WIDTH(1.5);
+    PARM_FIELD(string, "startgroup") VALUE(startgroup.val) 
+	LABELREF(startgroup.label) HSTRETCH;
+
+    startgroup.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+}
+
+mode.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Walk Mode", "mode") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    mode.menu;
+
+}
+
+dofwd.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("dofwd", "Loop Forwards") toggle VALUE(dofwd.val);
+
+}
+
+dobwd.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("dobwd", "Loop Backwards") toggle VALUE(dobwd.val);
+
+}
+usemaxcountfwd.row.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+usemaxcountfwd.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+usemaxcountfwd.gad = PARM_BUTTON("usemaxcountfwd", "") toggle VALUE(usemaxcountfwd.val);
+
+maxcountfwd.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ maxcountfwd.label = PARM_LABEL("Max \# Edges Fwd", "maxcountfwd") WIDTH(1.27);
+ PARM(integer, 1, "maxcountfwd", none, none) RANGE(1,20)
+	LOCK_RANGE_MIN LABELREF(maxcountfwd.label) HSTRETCH;
+
+}
+}	
+}	// Template join.bot
+
+usemaxcountbwd.row.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+usemaxcountbwd.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+usemaxcountbwd.gad = PARM_BUTTON("usemaxcountbwd", "") toggle VALUE(usemaxcountbwd.val);
+
+maxcountbwd.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ maxcountbwd.label = PARM_LABEL("Max \# Edges Bwd", "maxcountbwd") WIDTH(1.27);
+ PARM(integer, 1, "maxcountbwd", none, none) RANGE(1,20)
+	LOCK_RANGE_MIN LABELREF(maxcountbwd.label) HSTRETCH;
+
+}
+}	
+}	// Template join.bot
+
+useendgroup.row.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+useendgroup.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+useendgroup.gad = PARM_BUTTON("useendgroup", "") toggle VALUE(useendgroup.val);
+
+endgroup.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    endgroup.label = PARM_LABEL("End Edge Grp(s)", "endgroup") WIDTH(1.27);
+    PARM_FIELD(string, "endgroup") VALUE(endgroup.val) 
+	LABELREF(endgroup.label) HSTRETCH;
+
+    endgroup.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+}
+}	
+}	// Template join.bot
+
+useanglemax.row.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+useanglemax.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+useanglemax.gad = PARM_BUTTON("useanglemax", "") toggle VALUE(useanglemax.val);
+
+anglemax.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ anglemax.label = PARM_LABEL("End Angle (Max)", "anglemax") WIDTH(1.27);
+ PARM(float, 1, "anglemax", none, none) RANGE(0,90)
+	LOCK_RANGE_MIN LABELREF(anglemax.label) HSTRETCH;
+
+}
+}	
+}	// Template join.bot
+
+
+outgroup.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    outgroup.label = PARM_LABEL("Output Group Name", "outgroup") WIDTH(1.5);
+    PARM_FIELD(string, "outgroup") VALUE(outgroup.val) 
+	LABELREF(outgroup.label) HSTRETCH;
+
+}
+
+domultioutput.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("domultioutput", "Multiple Output Groups") toggle VALUE(domultioutput.val);
+
+}
+
+dooutcurves.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("dooutcurves", "Output Curves") toggle VALUE(dooutcurves.val);
+
+}
+
+sep_1.sval := 1;
+
+sep_1.gad = 
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+
+    SWITCHER tight
+    {
+	VALUE(sep_1.sval) HSTRETCH
+
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	}
+
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_1.val[0]) JUSTIFY(center,center) HSTRETCH;
+	}
+
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_1.val[0]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[1]) JUSTIFY(center,center) HSTRETCH;
+	}
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_1.val[0]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[1]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[2]) JUSTIFY(center,center) HSTRETCH;
+	}
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_1.val[0]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[1]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[2]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[3]) JUSTIFY(center,center) HSTRETCH;
+	}
+    }
+}
+doloopattrib.row.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+doloopattrib.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+doloopattrib.gad = PARM_BUTTON("doloopattrib", "") toggle VALUE(doloopattrib.val);
+
+loopattrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    loopattrib.label = PARM_LABEL("Loop Index Attrib", "loopattrib") WIDTH(1.27);
+    PARM_FIELD(string, "loopattrib") VALUE(loopattrib.val) 
+	LABELREF(loopattrib.label) HSTRETCH;
+
+}
+}	
+}	// Template join.bot
+
+docountattrib.row.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+docountattrib.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+docountattrib.gad = PARM_BUTTON("docountattrib", "") toggle VALUE(docountattrib.val);
+
+countattrib.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    countattrib.label = PARM_LABEL("In-loop Pt. Attrib", "countattrib") WIDTH(1.27);
+    PARM_FIELD(string, "countattrib") VALUE(countattrib.val) 
+	LABELREF(countattrib.label) HSTRETCH;
+
+}
+}	
+}	// Template join.bot
+
+
+# warning cpp warning: "Templates/GenV3/subdialog.top.ui":5 Macro "PARMSPACING" redefined.  Using later definition
+# warning cpp warning: "Templates/GenV3/subdialog.top.ui":6 Macro "LAYOUTDIR" redefined.  Using later definition
+# warning cpp warning: "Templates/GenV3/subdialog.top.ui":7 Macro "LOOK_PLAIN" redefined.  Using later definition
+# warning cpp warning: "Templates/GenV3/subdialog.top.ui":8 Macro "DO_JUSTIFY" redefined.  Using later definition
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH LOOK(plain) 
+    editable.gad; 
+    startgroup.gad; 
+    mode.gad; 
+    dofwd.gad; 
+    dobwd.gad; 
+    usemaxcountfwd.row.join; 
+    usemaxcountbwd.row.join; 
+    useendgroup.row.join; 
+    useanglemax.row.join; 
+    outgroup.gad; 
+    domultioutput.gad; 
+    dooutcurves.gad; 
+    sep_1.gad; 
+    doloopattrib.row.join; 
+    docountattrib.row.join; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

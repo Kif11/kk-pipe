@@ -1,0 +1,67 @@
+// Magic: 4390fcc5
+// Automatically generated PSI dialog (PSI version 13.0.498)
+// Sun Dec 07 18:44:16 2014
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+locate.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("locate", "Show position feedback") toggle VALUE(locate.val);
+
+}
+
+constbias.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("constbias", "Use Constant Bias") toggle VALUE(constbias.val);
+
+}
+
+midpoint.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("midpoint", "Snap to midpoint") toggle VALUE(midpoint.val);
+
+}
+
+perpendicular.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("perpendicular", "Snap to perpendicular") toggle VALUE(perpendicular.val);
+
+}
+
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH LOOK(plain) 
+    locate.gad; 
+    constbias.gad; 
+    midpoint.gad; 
+    perpendicular.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}

@@ -1,0 +1,367 @@
+// Magic: bee5055f
+// Automatically generated PSI dialog (PSI version 13.0.498)
+// Sun Dec 07 18:49:29 2014
+
+
+f_tmp = FLOAT_FIELD;	// dialog.top.ui
+
+group.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    group.label = PARM_LABEL("Point Group", "group") WIDTH(1.5);
+    PARM_FIELD(string, "group") VALUE(group.val) 
+	LABELREF(group.label) HSTRETCH;
+
+    group.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+}
+
+envelope.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ envelope.label = PARM_LABEL("Envelope", "envelope") WIDTH(1.5);
+ PARM(float, 1, "envelope", none, none) RANGE(0,1)
+	 LABELREF(envelope.label) HSTRETCH;
+
+}
+use_weight.row.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+use_weight.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+use_weight.gad = PARM_BUTTON("use_weight", "") toggle VALUE(use_weight.val);
+
+weight_name.gad = ROW
+{
+    HSTRETCH JUSTIFY(left, center)
+
+    weight_name.label = PARM_LABEL("Weight Name", "weight_name") WIDTH(1.27);
+    PARM_FIELD(string, "weight_name") VALUE(weight_name.val) 
+	LABELREF(weight_name.label) HSTRETCH;
+
+    weight_name.menu SIZE(0.26, 0.26) LOOK(menuiconbutton);
+
+}
+}	
+
+invert_weight.gad = ROW
+{
+
+    {  }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("invert_weight", "Invert") toggle VALUE(invert_weight.val);
+
+}
+}	// Template join.bot
+
+
+sep_1.sval := 1;
+
+sep_1.gad = 
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+
+    SWITCHER tight
+    {
+	VALUE(sep_1.sval) HSTRETCH
+
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	}
+
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_1.val[0]) JUSTIFY(center,center) HSTRETCH;
+	}
+
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_1.val[0]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[1]) JUSTIFY(center,center) HSTRETCH;
+	}
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_1.val[0]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[1]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[2]) JUSTIFY(center,center) HSTRETCH;
+	}
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_1.val[0]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[1]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[2]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_1.val[3]) JUSTIFY(center,center) HSTRETCH;
+	}
+    }
+}
+dopc.row.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+dopc.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+dopc.gad = PARM_BUTTON("dopc", "") toggle VALUE(dopc.val);
+
+pcblend.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ pcblend.label = PARM_LABEL("Proximity (%)", "pcblend") WIDTH(1.27);
+ PARM(float, 1, "pcblend", none, none) RANGE(0,1)
+	 LABELREF(pcblend.label) HSTRETCH;
+
+}
+}	
+}	// Template join.bot
+
+
+pcmaxdist.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ pcmaxdist.label = PARM_LABEL("Max Distance", "pcmaxdist") WIDTH(1.5);
+ PARM(float, 1, "pcmaxdist", none, none) RANGE(0,10)
+	LOCK_RANGE_MIN LABELREF(pcmaxdist.label) HSTRETCH;
+
+}
+
+pcmaxpts.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ pcmaxpts.label = PARM_LABEL("Max Points #", "pcmaxpts") WIDTH(1.5);
+ PARM(integer, 1, "pcmaxpts", none, none) RANGE(0,100)
+	LOCK_RANGE_MIN LABELREF(pcmaxpts.label) HSTRETCH;
+
+}
+
+pcexp.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ pcexp.label = PARM_LABEL("Falloff Exponent", "pcexp") WIDTH(1.5);
+ PARM(float, 1, "pcexp", none, none) RANGE(0,10)
+	 LABELREF(pcexp.label) HSTRETCH;
+
+}
+
+sep_2.sval := 1;
+
+sep_2.gad = 
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+
+    SWITCHER tight
+    {
+	VALUE(sep_2.sval) HSTRETCH
+
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	}
+
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_2.val[0]) JUSTIFY(center,center) HSTRETCH;
+	}
+
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_2.val[0]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_2.val[1]) JUSTIFY(center,center) HSTRETCH;
+	}
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_2.val[0]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_2.val[1]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_2.val[2]) JUSTIFY(center,center) HSTRETCH;
+	}
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_2.val[0]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_2.val[1]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_2.val[2]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_2.val[3]) JUSTIFY(center,center) HSTRETCH;
+	}
+    }
+}
+dotopo.row.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+dotopo.join =		
+{
+  LAYOUT(horizontal) HSTRETCH JUSTIFY(left, center)
+
+dotopo.gad = PARM_BUTTON("dotopo", "") toggle VALUE(dotopo.val);
+
+topoblend.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ topoblend.label = PARM_LABEL("Topology (%)", "topoblend") WIDTH(1.27);
+ PARM(float, 1, "topoblend", none, none) RANGE(0,1)
+	 LABELREF(topoblend.label) HSTRETCH;
+
+}
+}	
+}	// Template join.bot
+
+
+topoiterations.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ topoiterations.label = PARM_LABEL("Iterations #", "topoiterations") WIDTH(1.5);
+ PARM(integer, 1, "topoiterations", none, none) RANGE(0,100)
+	LOCK_RANGE_MIN LABELREF(topoiterations.label) HSTRETCH;
+
+}
+
+topomethod.gad = 
+{
+    LAYOUT(horizontal) JUSTIFY(left, center)
+
+    PARM_LABEL_SIMPLE("Method", "topomethod") WIDTH(1.5);
+    { WIDTH(0.09) }
+
+    topomethod.menu;
+
+}
+
+topoalpha.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ topoalpha.label = PARM_LABEL("Alpha (%)", "topoalpha") WIDTH(1.5);
+ PARM(float, 1, "topoalpha", none, none) RANGE(0,1)
+	 LABELREF(topoalpha.label) HSTRETCH;
+
+}
+
+topobeta.gad = 
+{
+ LAYOUT(horizontal) HSTRETCH
+
+ topobeta.label = PARM_LABEL("Beta (%)", "topobeta") WIDTH(1.5);
+ PARM(float, 1, "topobeta", none, none) RANGE(0,1)
+	 LABELREF(topobeta.label) HSTRETCH;
+
+}
+
+sep_3.sval := 1;
+
+sep_3.gad = 
+{
+    LAYOUT(vertical) SPACING(1p) HSTRETCH VMARGIN(0.05, 0)
+
+    SWITCHER tight
+    {
+	VALUE(sep_3.sval) HSTRETCH
+
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	}
+
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_3.val[0]) JUSTIFY(center,center) HSTRETCH;
+	}
+
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_3.val[0]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_3.val[1]) JUSTIFY(center,center) HSTRETCH;
+	}
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_3.val[0]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_3.val[1]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_3.val[2]) JUSTIFY(center,center) HSTRETCH;
+	}
+	{
+	    LAYOUT(horizontal) HSTRETCH
+
+	     LABEL VALUE(sep_3.val[0]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_3.val[1]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_3.val[2]) JUSTIFY(center,center) HSTRETCH;
+	     LABEL VALUE(sep_3.val[3]) JUSTIFY(center,center) HSTRETCH;
+	}
+    }
+}
+
+saverest.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("saverest", "Save Rest Position") toggle VALUE(saverest.val);
+
+}
+
+guide.gad = ROW
+{
+
+    { WIDTH(1.5) }
+    { WIDTH(0.08) }
+
+    PARM_BUTTON("guide", "Show Guide") toggle VALUE(guide.val);
+
+}
+
+# warning cpp warning: "Templates/GenV3/subdialog.top.ui":5 Macro "PARMSPACING" redefined.  Using later definition
+# warning cpp warning: "Templates/GenV3/subdialog.top.ui":6 Macro "LAYOUTDIR" redefined.  Using later definition
+# warning cpp warning: "Templates/GenV3/subdialog.top.ui":7 Macro "LOOK_PLAIN" redefined.  Using later definition
+# warning cpp warning: "Templates/GenV3/subdialog.top.ui":8 Macro "DO_JUSTIFY" redefined.  Using later definition
+dialog_norm.gad = 
+{
+    LAYOUT(vertical) SPACING(0.02) HSTRETCH LOOK(plain) 
+    group.gad; 
+    envelope.gad; 
+    use_weight.row.join; 
+    sep_1.gad; 
+    dopc.row.join; 
+    pcmaxdist.gad; 
+    pcmaxpts.gad; 
+    pcexp.gad; 
+    sep_2.gad; 
+    dotopo.row.join; 
+    topoiterations.gad; 
+    topomethod.gad; 
+    topoalpha.gad; 
+    topobeta.gad; 
+    sep_3.gad; 
+    saverest.gad; 
+    guide.gad; 
+} 
+// dialog.bot.ui
+
+extrastuffstowbar_minimize.val := 1;
+
+dialog = OPENNOTIFIER
+{
+    LAYOUT(vertical) SPACING(0.02) LOOK(bg) VALUE(open.val) HSTRETCH
+
+    { HEIGHT(1p) LOOK(bg) HSTRETCH }
+
+    dialog_norm.gad;
+}
