@@ -16,4 +16,3 @@ def set_global_var(name, value):
 
 set_global_var("JOB", hou_session_dictionary["JOB"])
 set_global_var("WORK", hou_session_dictionary["WORK"])
-

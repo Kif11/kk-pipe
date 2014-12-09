@@ -1,0 +1,375 @@
+    Special characters in path definition are:
+	@  - Typically expands to the HOUDINI_PATH.  Thus, if the
+	     HOUDINI_PATH was set to:
+	        $HIP
+		$HFS/houdini
+		$HOME/houdini
+	     a path defined as "@/vex" would expand to the paths
+	        $HIP/vex
+		$HFS/houdini/vex
+		$HOME/houdini/vex
+	=  - This expands to the $HIP variable.  This path will always
+	     point to where the currently loaded hip resides.
+	&  - The ampersand character expands to the "default" path.
+	     For example, to add a directory to the a path without
+	     worrying about what the default path should actually be,
+	     simply set the path to: "/mypath;&amp;".  This will search
+	     the "/mypath" path first, then search the default path.
+	^  - Some paths are used for multiple directories.  For
+	     example, the HOUDINI_VEX_PATH is used to define the
+	     search path for Surface, Displacement, Sop, etc. VEX
+	     shaders.  For VEX, the ^ symbol expands to the shader
+	     type.  Thus, if the HOUDINI_VEX_PATH variable is set to
+	     something like "/usr/local/vex;$HOME/vex/^", when
+	     loading Surface shaders, the following directories will
+	     be scanned:
+		/usr/local/vex
+		$HOME/vex/Surface
+	     and if Sop shaders are being searched for, the
+	     following paths will be searched:
+		/usr/local/vex
+		$HOME/vex/Sop
+
+Common paths are set to:
+$JOB = F:/python/kk_pipe
+$HIP = F:/python/kk_pipe
+$HOME = F:/python/kk_pipe/user_prefs
+$HSITE = <not defined>
+$HFS = C:/PROGRA~1/SIDEEF~1/HOUDIN~1.498
+
+HOUDINI_PATH                              := "&"
+    The path of directories where Houdini looks for configuration
+    files.
+
+    Directories searched (in order) are:
+	1) "$HIP"
+	2) "$HOME/houdini13.0"
+	3) "$HFS/houdini"
+	4) "$HFS/bin"
+
+HOUDINI_ASSET_STORE_PATH                  := "@/^"
+    The search path for the user's asset store related files (asset OTLs,
+    licenses, list of installed assets, etc)
+
+    Default path: '@/^'
+	Where @ is replaced with HOUDINI_PATH
+	and ^ is replaced with asset_store
+    Directories searched (in order) are:
+	1) "$HOME/houdini13.0/asset_store"
+
+HOUDINI_AUDIO_DSO_PATH                    := "@/audio"
+    The search path for loading custom audio format plugins for
+    reading and writing audio or channel files (.so, .dll).
+
+    Default path: '@/audio'
+	Where @ is replaced with HOUDINI_DSO_PATH
+    Directories searched (in order) are:
+	1) "$HFS/houdini/dso/audio"
+
+HOUDINI_CLIP_PATH                         := ".;@/clips;@/clip"
+    The path of directories where Houdini looks for .clip and .bclip
+    channel files
+
+    Default path: '.;@/clips;@/clip'
+	Where @ is replaced with HOUDINI_PATH
+    Directories searched (in order) are:
+	1) "."
+
+HOUDINI_CUSTOM_PATH                       := "@/^"
+    The path of directories where Houdini looks for custom panel
+    information.
+
+    Default path: '@/^'
+	Where @ is replaced with HOUDINI_PATH
+	and ^ is replaced with custom
+    Directories searched (in order) are:
+
+HOUDINI_DESK_PATH                         := "@/^"
+    The path of directories where Houdini looks for desktops
+
+    Default path: '@/^'
+	Where @ is replaced with HOUDINI_PATH
+	and ^ is replaced with desktop
+    Directories searched (in order) are:
+	1) "$HOME/houdini13.0/desktop"
+	2) "$HFS/houdini/desktop"
+
+HOUDINI_DSO_PATH                          := "@/dso_^;@/dso"
+    The search path for loading custom plug-ins (Dynamic Shared
+    Objects or Dynamic Link Libraries).
+
+    Default path: '@/dso_^;@/dso'
+	Where @ is replaced with HOUDINI_PATH
+	and ^ is replaced with nt_x86_64
+    Directories searched (in order) are:
+	1) "$HFS/houdini/dso"
+
+HOUDINI_GALLERY_PATH                      := "@/gallery"
+    Specifies the search path to the directory that contains the gallery files.
+    If this variable is not set, Houdini looks in the 'gallery' subdirectories
+    of the standard search path, which includes $HFS/houdini/gallery/, for
+    example.  Gallery files specify the predefined parameter values for any node
+    type, much like the presetsd. However, they are used predominantly for
+    defining shaders and materials.
+
+    Default path: '@/gallery'
+	Where @ is replaced with HOUDINI_PATH
+    Directories searched (in order) are:
+	1) "$HFS/houdini/gallery"
+
+HOUDINI_GEOMETRY_PATH                     := ".;@/geo"
+    The search path for geometry files.
+
+    Default path: '.;@/geo'
+	Where @ is replaced with HOUDINI_PATH
+    Directories searched (in order) are:
+	1) "."
+	2) "$HFS/houdini/geo"
+
+HOUDINI_GLSL_PATH                         := ".;@/glsl"
+    The search path for GLSL code.  Setting this path will override the
+    default path of $HOUDINI_PATH/ogl2/.  Searching for the dialog
+    scripts is independent of GLSL searching and is controlled by the
+    HOUDINI_PATH.
+
+    Default path: '.;@/glsl'
+	Where @ is replaced with HOUDINI_PATH
+    Directories searched (in order) are:
+	1) "."
+	2) "$HFS/houdini/glsl"
+
+HOUDINI_IMAGE_DSO_PATH                    := "@/fb"
+    The search path for loading custom image format plugins for
+    reading and writing images of that format (.so, .dll).
+
+    Default path: '@/fb'
+	Where @ is replaced with HOUDINI_DSO_PATH
+    Directories searched (in order) are:
+	1) "$HFS/houdini/dso/fb"
+
+HOUDINI_MACRO_PATH                        := "@/^"
+    The search path for toolbar macro files.
+
+    Default path: '@/^'
+	Where @ is replaced with HOUDINI_PATH
+	and ^ is replaced with scripts/opmacros
+    Directories searched (in order) are:
+	1) "$HFS/houdini/scripts/opmacros"
+
+HOUDINI_OCL_PATH                          := ".;@/ocl"
+    The search path for OpenCL kernels.  Setting this path will override the
+    default path of $HOUDINI_PATH/ocl/.
+
+    Default path: '.;@/ocl'
+	Where @ is replaced with HOUDINI_PATH
+    Directories searched (in order) are:
+	1) "."
+	2) "$HFS/houdini/ocl"
+
+HOUDINI_OPLIBRARIES_PATH                  := "@"
+    The path of directories where Houdini looks for OPlibraries files
+    for loading OTL files at startup.  OPlibraries files are only used
+    if the Operator Type Manager is configured to use them. Otherwise
+    OTL files are scanned for directly.  This path by default is equal
+    to the HOUDINI_OTL_PATH.
+
+    Default path: '@'
+	Where @ is replaced with HOUDINI_OTL_PATH
+    Directories searched (in order) are:
+	1) "$HIP"
+	2) "$HOME/houdini13.0"
+	3) "$HFS/houdini"
+	4) "$HFS/bin"
+
+HOUDINI_OTLSCAN_PATH                      := "F:/python/kk_pipe/lib_vendor/qLib/otls/base;@/otls"
+    This path specifies the directories Houdini will search for OTL files.
+    This value is only used if the Operator Type Manager is configured not
+    to use OPlibraries files to find OTL files. The default for this value
+    is the HOUDINI_OTL_PATH with "/otls" appended to each directory in
+    that path.
+
+    Default path: '@/otls'
+	Where @ is replaced with HOUDINI_OTL_PATH
+    Directories searched (in order) are:
+	1) "$HIP/lib_vendor/qLib/otls/base"
+	2) "$HOME/houdini13.0/otls"
+	3) "$HFS/houdini/otls"
+
+HOUDINI_OTL_PATH                          := "@"
+    This path is not used directly by Houdini.  It is used to provide
+    default values for the HOUDINI_OPLIBRARIES_PATH and HOUDINI_OTLSCAN_PATH
+    values in a way that is backward compatible (since HOUDINI_OTL_PATH
+    used to mean what HOUDINI_OPLIBRARIES_PATH now means).
+
+    Default path: '@'
+	Where @ is replaced with HOUDINI_PATH
+    Directories searched (in order) are:
+	1) "$HIP"
+	2) "$HOME/houdini13.0"
+	3) "$HFS/houdini"
+	4) "$HFS/bin"
+
+HOUDINI_OUTLINEFONT_PATH                  := "@/fonts;C:/windows/Fonts"
+    This is the path searched for Adobe Type 1 or True Type fonts used
+    in the font SOP, font COP 
+
+    Default path: '@/fonts;C:/windows/Fonts'
+	Where @ is replaced with HOUDINI_PATH
+    Directories searched (in order) are:
+	1) "$HFS/houdini/fonts"
+	2) "C:/windows/Fonts"
+
+HOUDINI_SCRIPT_PATH                       := "@/scripts"
+    The path of directories where Houdini searches for scripts.  This
+    includes .cmd files for hscript, .class files for the java command,
+    .tcl and .tk files for the tcl and tk commands, and command scripts
+    for the Alfred Output Driver.
+
+    Default path: '@/scripts'
+	Where @ is replaced with HOUDINI_PATH
+    Directories searched (in order) are:
+	1) "$HOME/houdini13.0/scripts"
+	2) "$HFS/houdini/scripts"
+
+HOUDINI_SOHO_PATH                         := "@/soho"
+    The path of directories used by soho.
+
+    Default path: '@/soho'
+	Where @ is replaced with HOUDINI_PATH
+    Directories searched (in order) are:
+	1) "$HFS/houdini/soho"
+
+HOUDINI_TEXTURE_PATH                      := ".;@/pic;@/map;@/maps"
+    The search path for loading images.  This includes .rat files and
+    other 2D formats as well as .i3d 3D texture files.
+
+    Default path: '.;@/pic;@/map;@/maps'
+	Where @ is replaced with HOUDINI_PATH
+    Directories searched (in order) are:
+	1) "."
+	2) "$HFS/houdini/pic"
+
+HOUDINI_TOOLBAR_PATH                      := "@/^"
+    The search path for factory and custom shelves and shelf tools (i.e., 
+    shelf files). The shelf files are searched for and loaded when Houdini
+    starts. They can define new tools that appear in the TAB menu or new
+    groupings of tools (ie, toolbars or shelves) which can be displayed in the
+    shelving area (usually, just below the main menu).
+
+    Default path: '@/^'
+	Where @ is replaced with HOUDINI_PATH
+	and ^ is replaced with toolbar
+    Directories searched (in order) are:
+	1) "$HOME/houdini13.0/toolbar"
+	2) "$HFS/houdini/toolbar"
+
+HOUDINI_UI_APP_PATH                       := "@/^"
+    An application search path for .ui definition files. Use care when changing
+    this path, otherwise the graphical Houdini applications may not start.
+
+    Default path: '@/^'
+	Where @ is replaced with HOUDINI_UI_PATH
+	and ^ is replaced with Applications
+    Directories searched (in order) are:
+	1) "$HFS/houdini/config/Applications"
+
+HOUDINI_UI_AUDIO_PATH                     := "@/^"
+    An application search path for the audio notification files used by the 
+    interface. Use care in changing this path, otherwise audio notifcations
+    may stop working.
+
+    Default path: '@/^'
+	Where @ is replaced with HOUDINI_UI_PATH
+	and ^ is replaced with Audio
+    Directories searched (in order) are:
+	1) "$HFS/houdini/config/Audio"
+
+HOUDINI_UI_CURSOR_PATH                    := "@/^"
+    An application search path for locating the Houdini mouse cursor set. Use
+    care when changing this path, otherwise the mouse cursor may not reflect
+    its current context.
+
+    Default path: '@/^'
+	Where @ is replaced with HOUDINI_UI_PATH
+	and ^ is replaced with Cursors
+    Directories searched (in order) are:
+	1) "$HFS/houdini/config/Cursors"
+
+HOUDINI_UI_ICON_PATH                      := "@/^"
+    The search path for icon files. Setting this path will override the
+    default of $HOUDINI_PATH/config/Icons.
+
+    Default path: '@/^'
+	Where @ is replaced with HOUDINI_UI_PATH
+	and ^ is replaced with Icons
+    Directories searched (in order) are:
+	1) "$HOME/houdini13.0/config/Icons"
+	2) "$HFS/houdini/config/Icons"
+
+HOUDINI_UI_PATH                           := "@/config"
+    The base path for all user interface files. Use extreme care when changing
+    this variable, or graphical Houdini applications may not start. Before
+    adding paths to this variable, check the other HOUDINI_UI variables to see
+    if one or more of those paths will accomplish what you need. Adding a new
+    path to this variable can be expensive.
+
+    Default path: '@/config'
+	Where @ is replaced with HOUDINI_PATH
+    Directories searched (in order) are:
+	1) "$HIP/config"
+	2) "$HOME/houdini13.0/config"
+	3) "$HFS/houdini/config"
+
+HOUDINI_VEX_PATH                          := ".;@/vex/^"
+    The search path for VEX code.  Setting this path will override the
+    default path of $HOUDINI_PATH/vex/.  Searching for the dialog
+    scripts is independent of VEX searching and is controlled by the
+    HOUDINI_PATH.
+
+    Default path: '.;@/vex/^'
+	Where @ is replaced with HOUDINI_PATH
+	and ^ is replaced with Displacement, Fog, Light, Shadow, Surface, Chop, Cop2, Image3d, Sop, Pop, CVex
+    Directories searched (in order) are:
+	1) "."
+	2) "$HFS/houdini/vex/Displacement"
+    OR --------------------------------
+	1) "."
+	2) "$HFS/houdini/vex/Fog"
+    OR --------------------------------
+	1) "."
+	2) "$HFS/houdini/vex/Light"
+    OR --------------------------------
+	1) "."
+	2) "$HFS/houdini/vex/Shadow"
+    OR --------------------------------
+	1) "."
+	2) "$HFS/houdini/vex/Surface"
+    OR --------------------------------
+	1) "."
+	2) "$HFS/houdini/vex/Chop"
+    OR --------------------------------
+	1) "."
+	2) "$HFS/houdini/vex/Cop2"
+    OR --------------------------------
+	1) "."
+	2) "$HFS/houdini/vex/Image3d"
+    OR --------------------------------
+	1) "."
+	2) "$HFS/houdini/vex/Sop"
+    OR --------------------------------
+	1) "."
+	2) "$HFS/houdini/vex/Pop"
+    OR --------------------------------
+	1) "."
+	2) "$HFS/houdini/vex/CVex"
+
+HOUDINI_VOP_DEFINITIONS_PATH              := "@/vop"
+    Defines the directory search path where Houdini looks for connector
+    type definitions (such as new struct definitions). The default is to look
+    in the "vop" subdirectory of HOUDINI_PATH directories.
+
+    Default path: '@/vop'
+	Where @ is replaced with HOUDINI_PATH
+    Directories searched (in order) are:
+	1) "$HFS/houdini/vop"
+
