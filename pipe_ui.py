@@ -248,5 +248,3 @@ application = QApplication(sys.argv)
 dialog = PipeUI()
 dialog.show()
 application.exec_()
-
-# Edit test comment

@@ -103,6 +103,7 @@ class App(util.Util):
         data = {"JOB" : project_path,
                 "WORK" : full_context_path}
         with open('config/hou_session.yml', 'w') as yaml_file:
+            yaml_file.write( yaml.dump(data, default_flow_style=False))
 
         launch_cmd = "%s %s" % (app_launch_path, app_cmd_args)
         subprocess.Popen(launch_cmd)
