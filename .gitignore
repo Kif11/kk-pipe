@@ -40,4 +40,8 @@ Thumbs.db
 # My Costome Files #
 ######################
 .idea
+*session.py
+
+# My Costome Folders #
+######################
 user_prefs

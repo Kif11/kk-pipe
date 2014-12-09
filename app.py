@@ -57,19 +57,52 @@ class App(util.Util):
 
 
     def run_houdini(self, app_launch_path=None, app_cmd_args=None, project_path=None, full_context_path=None):
-        cwd = os.getcwd().replace("\\","/")
 
-        houdini_pref_dir = cwd + "/" + "user_prefs"
+        # Test block
+        # app_launch_path = "C:/Program Files/Side Effects Software/Houdini 13.0.498/bin/houdini.exe"
+        # app_cmd_args = ""
+        # project_path = "F:/AAU/ANM_699_03_Particles/snow_ball"
+        # full_context_path = "F:/AAU/ANM_699_03_Particles/snow_ball"
+
+        def envjoin(*args):
+            concPath = os.path.pathsep.join(args)
+            return concPath
+
+        cwd = os.getcwd().replace("\\","/")
+        houdini_install_path = "/".join(app_launch_path.split("/")[:-2])
+        houdini_pref_dir = cwd + "/user_prefs"
+        qlib_otl = cwd + "/lib_vendor/qLib/otls"
+        qlib_base = qlib_otl + "/base"
+        qlib_exp = qlib_otl + "/experimental"
+
+        # Houdini instaled build such as "C:/Program Files/Side Effects Software/Houdini 13.0.498"
+        os.environ["HFS"] = houdini_install_path
+        # Houdini standart libraries (shaders etc.)
+        # Arnold also looking for this variable
+        os.environ["HH"] = envjoin(houdini_install_path, "houdini")
+        # SYSTEM PATH
+        os.environ["PATH"] = envjoin(houdini_install_path + "/bin", os.environ["PATH"])
+        # HOUDINI PATH
+        os.environ["HOUDINI_PATH"] = "&"
+        # Global otls directories
+        os.environ["HOUDINI_OTLSCAN_PATH"] = envjoin(qlib_base, qlib_exp, "@/otls")
         # User preferences folder
         os.environ["HOME"] = houdini_pref_dir
         # Scripts folder
         os.environ["PYTHONPATH"] = os.path.join(cwd, "@/scripts")
+        # Set bufeffere_save on for faster save over network
+        os.environ["HOUDINI_BUFFEREDSAVE"] = "1"
+
+        # Force to use houdini version of Python
+        os.environ["HOUDINI_USE_HFS_PYTHON"] = "1"
+        
+        # Houdini external help browser
+        os.environ["HOUDINI_EXTERNAL_HELP_BROWSER"] = "start chrome"
 
         # Write data to yaml file that houdini can read it after launch trough 123.py script
         data = {"JOB" : project_path,
                 "WORK" : full_context_path}
         with open('config/hou_session.yml', 'w') as yaml_file:
-            yaml_file.write( yaml.dump(data, default_flow_style=False))
 
         launch_cmd = "%s %s" % (app_launch_path, app_cmd_args)
         subprocess.Popen(launch_cmd)
@@ -87,3 +120,7 @@ class App(util.Util):
 
         launch_cmd = "%s %s" % (app_launch_path, app_cmd_args)
         subprocess.Popen(launch_cmd)
+
+# Test block
+# app = App()
+# app.run_houdini()

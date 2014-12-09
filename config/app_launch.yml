@@ -18,7 +18,7 @@ maya_2013:
 houdini_13.0.498:
     windows_launch_path: 'C:/Program Files/Side Effects Software/Houdini 13.0.498/bin/houdini.exe'
     mac_launch_path: ''
-    windows_args: '-s kk_desktop -n'
+    windows_args: ''
     mac_args: ''
     user_pref_folder: 'user_prefs'
 
