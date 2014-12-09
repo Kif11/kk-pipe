@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../intermediatPython/.idea/intermediatPython.iml" filepath="$PROJECT_DIR$/../intermediatPython/.idea/intermediatPython.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/kk_pipe.iml" filepath="$PROJECT_DIR$/.idea/kk_pipe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../networking/.idea/networking.iml" filepath="$PROJECT_DIR$/../networking/.idea/networking.iml" />
     </modules>
   </component>
 </project>
+
