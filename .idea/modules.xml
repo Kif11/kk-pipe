@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/../intermediatPython/.idea/intermediatPython.iml" filepath="$PROJECT_DIR$/../intermediatPython/.idea/intermediatPython.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/kk_pipe.iml" filepath="$PROJECT_DIR$/.idea/kk_pipe.iml" />
       <module fileurl="file://$PROJECT_DIR$/../networking/.idea/networking.iml" filepath="$PROJECT_DIR$/../networking/.idea/networking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../sqlite/.idea/sqlite.iml" filepath="$PROJECT_DIR$/../sqlite/.idea/sqlite.iml" />
     </modules>
   </component>
 </project>

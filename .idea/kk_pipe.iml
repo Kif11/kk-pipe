@@ -6,6 +6,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="intermediatPython" />
     <orderEntry type="module" module-name="networking" />
+    <orderEntry type="module" module-name="sqlite" />
   </component>
 </module>
 
